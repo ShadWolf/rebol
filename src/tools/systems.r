@@ -31,6 +31,7 @@ systems: [
 	[0.4.20 "linux_arm"  posix  [+O2 HID LDL ST1 -LM]]
 	[0.4.21 "linux_arm"  posix  [+O2 HID LDL ST1 -LM PIE]]  ; bionic (Android)
 	[0.4.30 "linux_mips" posix  [+O2 HID LDL ST1 -LM]]  ; glibc does not need C++
+	[0.4.40 "linux"      posix  [+O2 HID LDL ST1 -LM]]	; libc 2.11 -64??
 	[0.5.75 "haiku"      posix  [+O2 ST1 NWK]]
 	[0.7.02 "freebsd"    posix  [+O1 C++ ST1 -LM]]
 	[0.9.04 "openbsd"    posix  [+O1 C++ ST1 -LM]]
@@ -92,7 +93,7 @@ config-system: func [
 	/platform v [tuple!]
 ][
 	if fields [return first systems]
-	v: any [v to tuple! reduce [0 system/version/4 system/version/5]]
+	v: any [ to tuple! reduce [0 system/version/4 system/version/5]]
 	foreach rec next systems [
 		if rec/1 = v [
 			if os-dir [return dirize to-file rec/3]

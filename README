@@ -1,3 +1,19 @@
+REBOL v3 Build to be used anywhere anytime.
+
+
+To be clear as many other I took rebol's Carl Sassenrath abandonned and deprecated work in the hope to transform it to a success story.
+If you want to give monney buy to Carl Sassenrath rebol.com 
+If you want to commit to this project do it the git way.
+
+you want to build this ? it's for LINUX 64-bit (with make and gcc) 
+
+git clone this repo
+enter the folder rebol/make 
+do make and that's it ! Enjoy your rebol VM !!
+
+
+--- All the above because licence terms ---
+
 Rebol [R3] Source Code Distribution
 Date: 12-Dec-2012
 Version: 2.101.0
