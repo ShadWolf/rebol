@@ -73,8 +73,8 @@ all:
 	$(MAKE) clean
 	$(MAKE) prep
 	$(MAKE) r3$(BIN_SUFFIX)
-	$(MAKE) lib
-	$(MAKE) host$(BIN_SUFFIX)
+#	$(MAKE) lib
+#	$(MAKE) host$(BIN_SUFFIX)
 
 prep:
 	$(REBOL) $T/make-headers.r

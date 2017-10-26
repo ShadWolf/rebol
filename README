@@ -1,18 +1,42 @@
 REBOL v3 Build to be used anywhere anytime.
 
+To be clear as many other I took REBOL v3 by Carl Sassenrath
+abandonned and deprecated work in the hope to transform it to a success.
 
-To be clear as many other I took rebol's Carl Sassenrath abandonned and deprecated work in the hope to transform it to a success story.
-If you want to give monney buy to Carl Sassenrath rebol.com 
-If you want to commit to this project do it the git way.
+If you want to give monney buy something at rebol.com to show your love to REBOL and Carl Sassenrath.
 
-you want to build this ? it's for LINUX 64-bit (with make and gcc) 
+If you want to commit/participate to this project do it the git way. Send me an email or participate in rebol forum 
+
+You want to build this? 
+it's for LINUX 64-bit (with make and gcc) 
 
 git clone this repo
 enter the folder rebol/make 
 do make and that's it ! Enjoy your rebol VM !!
 
 
---- All the above because licence terms ---
+--- What to expect ?
+I hate r3 ... for me r2 was like the best you could get for less tha a 1.44 Mo. I understand r3 is so much fast an new ... but it has almost none of the feature you could get in r2.
+
+Rebol needs a strong core, a centralized package manager,  
+a centralized web site (github) to host the rebol extensions (all that is not in the core by default), Big projects like PHP cake or Django.
+
+In a short time I set as goal to have a package of rebol v3 for every major linux distro.
+
+-- Where to start?
+First task stripping rebol v3 from all the unecesary things (reb-lib, host, chat, bug etc... stopping colling rebol v3 an alpha testing version but naming it rebol as it always add been called)
+
+Then a better compilation process using a bash script to test if there is approprited tools to build rebol. If there are not it gets and install them.
+
+Once we have a rebol 3 striped of non senses we will broadly package and distribute it to the linux world.
+
+
+--- Can I do all this alone ? 
+
+I expect you will help me massively. But to be honnest I think I will be alone so be it.
+
+
+--- Kept original content because licence term and respect ---
 
 Rebol [R3] Source Code Distribution
 Date: 12-Dec-2012
