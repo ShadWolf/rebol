@@ -134,13 +134,9 @@ dump-obj: function [
 
 			Other information:
 
-				chat - open DevBase developer forum/BBS
 				docs - open DocBase document wiki website
 				bugs - open CureCore bug database website
-				demo - run demo launcher (from rebol.com)
 				about - see general product info
-				upgrade - check for newer versions
-				changes - show changes for recent version
 				install - install (when applicable)
 				license - show user license
 				usage - program cmd line options
@@ -422,26 +418,6 @@ say-browser: does [
 	print "Opening web browser..."
 ]
 
-upgrade: function [
-	"Check for newer versions (update REBOL)."
-][
-	print "Fetching upgrade check ..."
-	if error? err: try [do http://www.rebol.com/r3/upgrade.r none][
-		either err/id = 'protocol [print "Cannot upgrade from web."][do err]
-	]
-	exit
-]
-
-chat: function [
-	"Open REBOL DevBase forum/BBS."
-][
-	print "Fetching chat..."
-	if error? err: try [do http://www.rebol.com/r3/chat.r none][
-		either err/id = 'protocol [print "Cannot load chat from web."][do err]
-	]
-	exit
-]
-
 docs: func [
 	"Browse on-line documentation."
 ][
@@ -455,14 +431,6 @@ bugs: func [
 ][
 	say-browser
 	browse http://curecode.org/rebol3/
-	exit
-]
-
-changes: func [
-	"What's new about this version."
-][
-	say-browser
-	browse http://www.rebol.com/r3/changes.html
 	exit
 ]
 
@@ -489,24 +457,3 @@ why?: func [
 	exit
 ]
 
-demo: function [
-	"Run R3 demo."
-][
-	print "Fetching demo..."
-	if error? err: try [do http://www.rebol.com/r3/demo.r none][
-		either err/id = 'protocol [print "Cannot load demo from web."][do err]
-	]
-	exit
-]
-
-load-gui: function [
-	"Download current GUI module from web. (Temporary)"
-][
-	print "Fetching GUI..."
-	either error? data: try [load http://www.rebol.com/r3/gui.r][
-		either data/id = 'protocol [print "Cannot load GUI from web."][do err]
-	][
-		do data
-	]
-	exit
-]

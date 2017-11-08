@@ -43,7 +43,7 @@ make-banner: func [
 sys/boot-banner: make-banner [
 	*
 	-
-	"REBOL 3.0"
+	"REBOL 3.1"
 	-
 	= Copyright: [system/build/year "REBOL Technologies"]
 	= "" "All rights reserved."
@@ -68,15 +68,14 @@ sys/boot-help:
   * Sandbox and security are not available.
   * Direct access to TCP HTTP required (no proxies).
   * Default web browser must be available.
+  * Clean rebol to make a strong rebol core
+  * Add a package manager.
 
 Special functions:
 
   Docs - open DocBase document wiki (web)
   Bugs - open CureCode bug database (web)
-  Demo - run demo launcher (from rebol.com)
   Help - show built-in help information
-  Upgrade - check for newer releases
-  Changes - what's new about this version (web)
 }
 
 ;print make-banner boot-banner halt

@@ -161,8 +161,7 @@ HOST =	objs/host-main.o objs/host-args.o objs/host-device.o objs/host-stdio.o \
 rebol$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
 	$(CC) -o rebol$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
 	$(STRIP) rebol$(BIN_SUFFIX)
-	-$(NM) -a rebol$(BIN_SUFFIX)
-	$(LS) rebol$(BIN_SUFFIX)
+	-$(LS) rebol$(BIN_SUFFIX)
 
 objs:
 	mkdir -p objs
