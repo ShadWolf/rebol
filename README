@@ -1,22 +1,38 @@
-REBOL v3 Build to be used anywhere anytime.
+REBOL v3 
+Built to be used anywhere at anytime. Starting from linux 64 glibc6 2.11.
 
 To be clear as many other I took REBOL v3 by Carl Sassenrath
 abandonned and deprecated work in the hope to transform it to a success.
 
-If you want to give monney buy something at rebol.com to show your love to REBOL and Carl Sassenrath.
+If you want to give monney buy something at rebol.com to show your love to REBOL and Carl Sassenrath. I don't know if in 2017 rebolTech still sells stuffs but you still can send an email to Carl Sassenrath to show your appreciation and tell him that you will donate to his paypal account if he gives it to you.
 
-If you want to commit/participate to this project do it the git way. Send me an email or participate in rebol forum 
+
+If you want to reward me for my work than  commit/participate to this project. Do it the git way. Send me an email or participate in rebol forum www.digicamsoft.com/cgi-bin/rebelBB.cgi (it's in french but don't be shy...) 
 
 You want to build this? 
-it's for LINUX 64-bit (with make and gcc) 
+it's for LINUX 64-bit libc6 2.11 kernel 4.5+ (with make and gcc and a static binary rebol v3 you will have to trust me that it works) 
 
 git clone this repo
 enter the folder rebol/make 
-do make and that's it ! Enjoy your rebol VM !!
+do make and that's it ! Enjoy your reboli v3 VM !!
 
+--- Who I am ?
+My name is Alphé Salas, I am a Software Ingeneer formed at University Paris 8i (France). Spent 10 years actively creating rebol scripts for the comminity best acheivement script was with rebol v2 Viva-Rebol IDE (http://github.com/viva-rebol/viva-rebol.r). 
+
+In 2010 I retire from producing script for the rebol community. First because it was reduced to a handfull of people which were engrossed in creating RED the next thing. I thought instead of dividing us we should focus on solving rebol2 issues. Then Carl Sassenrath proposed r3 ... and things were even more divided.
+Less people had access to rebol and rebol wasn't progressing.
+
+After 7 years I still think rebol should be more known more supported.
 
 --- What to expect ?
-I hate r3 ... for me r2 was like the best you could get for less tha a 1.44 Mo. I understand r3 is so much fast an new ... but it has almost none of the feature you could get in r2.
+I hate r3 ... for me rebol 2 was like the best you could get for less tha a 1.44 Mo. I understand r3 is so much fast an new ... but it has almost none of the feature you could get in rebol 2.
+
+It's been 5 years since Carl graceously donate r3 code to the world and do rebol is better known better supported ? 
+Answer is REWhat!?
+
+Rebol is Rebol what ever it's version is. While it was transformed to a LUA wanabe it lost almost everything that was cool about rebol. 
+
+The only great stuffs that stays in today r3 form rebol v2 is parse, do http::/myscript.r, and all related METALANGUAGE abilities.  
 
 Rebol needs a strong core, a centralized package manager,  
 a centralized web site (github) to host the rebol extensions (all that is not in the core by default), Big projects like PHP cake or Django.
@@ -24,16 +40,18 @@ a centralized web site (github) to host the rebol extensions (all that is not in
 In a short time I set as goal to have a package of rebol v3 for every major linux distro.
 
 -- Where to start?
-First task stripping rebol v3 from all the unecesary things (reb-lib, host, chat, bug etc... stopping colling rebol v3 an alpha testing version but naming it rebol as it always add been called)
+
+First task stripping rebol v3 from all the unecesary things (reb-lib, host, chat, bugs etc... stopping calling rebol v3, r3 or  an alpha testing version but naming it rebol as it always add been called)
 
 Then a better compilation process using a bash script to test if there is approprited tools to build rebol. If there are not it gets and install them.
 
 Once we have a rebol 3 striped of non senses we will broadly package and distribute it to the linux world.
 
-
 --- Can I do all this alone ? 
 
-I expect you will help me massively. But to be honnest I think I will be alone so be it.
+I expect you will help me massively To make rebol v3 the great well known language it should be . 
+
+But to be honnest I think I will be alone... 
 
 
 --- Kept original content because licence term and respect ---

@@ -3,6 +3,7 @@
 #################
 
 make/r3*
+make/rebol
 make/objs/
 src/boot/boot-code.r
 src/boot/host-init.r

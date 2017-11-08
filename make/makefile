@@ -50,15 +50,15 @@ HFLAGS= -c -D$(TO_OS) -DREB_CORE $(HOST_FLAGS) $I
 CLIB=  -ldl -m32 -lm
 
 # REBOL is needed to build various include files:
-REBOL_TOOL= r3-make
+REBOL_TOOL= rebol-make
 REBOL=	$(CD)$(REBOL_TOOL) -qs
 
 # For running tests, ship, build, etc.
-R3=	$(CD)r3$(BIN_SUFFIX) -qs
+R3=	$(CD)rebol$(BIN_SUFFIX) -qs
 
 ### Build targets:
 top:
-	$(MAKE) r3$(BIN_SUFFIX)
+	$(MAKE) rebol$(BIN_SUFFIX)
 
 update:
 	-cd $(UP)/; cvs -q update src
@@ -67,12 +67,12 @@ make:
 	$(REBOL) $T/make-make.r $(OS_ID)
 
 clean:
-	@-rm -rf libr3.so objs/
+	@-rm -rf librebol.so objs/
 
 all:
 	$(MAKE) clean
 	$(MAKE) prep
-	$(MAKE) r3$(BIN_SUFFIX)
+	$(MAKE) rebol$(BIN_SUFFIX)
 #	$(MAKE) lib
 #	$(MAKE) host$(BIN_SUFFIX)
 
@@ -101,32 +101,32 @@ $(REBOL_TOOL):
 
 ### Post build actions
 purge:
-	-rm libr3.*
+	-rm librebol.*
 	-rm host$(BIN_SUFFIX)
 	$(MAKE) lib
 	$(MAKE) host$(BIN_SUFFIX)
 
 test:
-	$(CP) r3$(BIN_SUFFIX) $(UP)/src/tests/
+	$(CP) rebol$(BIN_SUFFIX) $(UP)/src/tests/
 	$(R3) $S/tests/test.r
 
 install:
-	sudo cp r3$(BIN_SUFFIX) /usr/local/bin
+	sudo cp rebol$(BIN_SUFFIX) /usr/local/bin
 
 ship:
 	$(R3) $S/tools/upload.r
 
-build:	libr3.so
+build:	librebol.so
 	$(R3) $S/tools/make-build.r
 
 cln:
-	rm libr3.* r3.o
+	rm librebol.* rebol.o
 
 check:
-	$(STRIP) -s -o r3.s r3$(BIN_SUFFIX)
-	$(STRIP) -x -o r3.x r3$(BIN_SUFFIX)
-	$(STRIP) -X -o r3.X r3$(BIN_SUFFIX)
-	$(LS) r3*
+	$(STRIP) -s -o rebol.s rebol$(BIN_SUFFIX)
+	$(STRIP) -x -o rebol.x rebol$(BIN_SUFFIX)
+	$(STRIP) -X -o rebol.X rebol$(BIN_SUFFIX)
+	$(LS) rebol*
 
 OBJS =	objs/a-constants.o objs/a-globals.o objs/a-lib.o objs/b-boot.o \
 	objs/b-init.o objs/c-do.o objs/c-error.o objs/c-frame.o \
@@ -157,30 +157,30 @@ HOST =	objs/host-main.o objs/host-args.o objs/host-device.o objs/host-stdio.o \
 	objs/dev-stdio.o objs/dev-event.o objs/dev-file.o 
 
 
-# Directly linked r3 executable:
-r3$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
-	$(CC) -o r3$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
-	$(STRIP) r3$(BIN_SUFFIX)
-	-$(NM) -a r3$(BIN_SUFFIX)
-	$(LS) r3$(BIN_SUFFIX)
+# Directly linked rebol executable:
+rebol$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
+	$(CC) -o rebol$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
+	$(STRIP) rebol$(BIN_SUFFIX)
+	-$(NM) -a rebol$(BIN_SUFFIX)
+	$(LS) rebol$(BIN_SUFFIX)
 
 objs:
 	mkdir -p objs
 
-lib:	libr3.so
+lib:	librebol.so
 
 # PUBLIC: Shared library:
-# NOTE: Did not use "-Wl,-soname,libr3.so" because won't find .so in local dir.
-libr3.so:	$(OBJS)
-	$(CC) -o libr3.so -shared $(OBJS) $(CLIB)
-	$(STRIP) libr3.so
-	-$(NM) -D libr3.so
-	-$(NM) -a libr3.so | grep "Do_"
-	$(LS) libr3.so
+# NOTE: Did not use "-Wl,-soname,librebol.so" because won't find .so in local dir.
+librebol.so:	$(OBJS)
+	$(CC) -o librebol.so -shared $(OBJS) $(CLIB)
+	$(STRIP) librebol.so
+	-$(NM) -D librebol.so
+	-$(NM) -a librebol.so | grep "Do_"
+	$(LS) librebol.so
 
 # PUBLIC: Host using the shared lib:
 host$(BIN_SUFFIX):	$(HOST)
-	$(CC) -o host$(BIN_SUFFIX) $(HOST) libr3.so $(CLIB)
+	$(CC) -o host$(BIN_SUFFIX) $(HOST) librebol.so $(CLIB)
 	$(STRIP) host$(BIN_SUFFIX)
 	$(LS) host$(BIN_SUFFIX)
 	echo "export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH"
