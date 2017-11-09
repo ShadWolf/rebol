@@ -107,8 +107,8 @@ all:
 	$(MAKE) clean
 	$(MAKE) prep
 	$(MAKE) rebol$(BIN_SUFFIX)
-	$(MAKE) lib
-	$(MAKE) host$(BIN_SUFFIX)
+#	$(MAKE) lib
+#	$(MAKE) host$(BIN_SUFFIX)
 
 prep:
 	$(REBOL) $T/make-headers.r
@@ -171,7 +171,7 @@ makefile-link: {
 rebol$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
 	$(CC) -o rebol$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
 	$(STRIP) rebol$(BIN_SUFFIX)
-	-$(NM) -a rebol$(BIN_SUFFIX)
+#	-$(NM) -a rebol$(BIN_SUFFIX)
 	$(LS) rebol$(BIN_SUFFIX)
 
 objs:

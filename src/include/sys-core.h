@@ -54,6 +54,7 @@
 #include <stdarg.h>		// For var-arg Print functions
 #include <string.h>
 #include <setjmp.h>
+#include <wchar.h>
 #include <math.h>
 
 // Special OS-specific definitions:
