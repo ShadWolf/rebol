@@ -327,7 +327,7 @@ const REBCNT Gob_Flag_Words[] = {
 
 	case SYM_SIZE:
 		return Set_Pair(&gob->size, val);
-
+/*
 	case SYM_IMAGE:
 		CLR_GOB_OPAQUE(gob);
 		if (IS_IMAGE(val)) {
@@ -340,7 +340,7 @@ const REBCNT Gob_Flag_Words[] = {
 		else if (IS_NONE(val)) SET_GOB_TYPE(gob, GOBT_NONE);
 		else return FALSE;
 		break;
-
+*/
 	case SYM_DRAW:
 		CLR_GOB_OPAQUE(gob);
 		if (IS_BLOCK(val)) {
@@ -379,7 +379,7 @@ const REBCNT Gob_Flag_Words[] = {
 		CLR_GOB_OPAQUE(gob);
 		if (IS_TUPLE(val)) {
 			SET_GOB_TYPE(gob, GOBT_COLOR);
-			Set_Pixel_Tuple((REBYTE*)&GOB_CONTENT(gob), val);
+			//Set_Pixel_Tuple((REBYTE*)&GOB_CONTENT(gob), val);
 			if (VAL_TUPLE_LEN(val) < 4 || VAL_TUPLE(val)[3] == 0)
 				SET_GOB_OPAQUE(gob);
 		}
@@ -468,14 +468,14 @@ const REBCNT Gob_Flag_Words[] = {
 	case SYM_SIZE:
 		SET_PAIR(val, GOB_W(gob), GOB_H(gob));
 		break;
-
+/*
 	case SYM_IMAGE:
 		if (GOB_TYPE(gob) == GOBT_IMAGE) {
 			// image
 		}
 		else goto is_none;
 		break;
-
+*/
 	case SYM_DRAW:
 		if (GOB_TYPE(gob) == GOBT_DRAW) {
 			Set_Block(val, GOB_CONTENT(gob)); // Note: compiler optimizes SET_BLOCKs below
@@ -502,7 +502,7 @@ const REBCNT Gob_Flag_Words[] = {
 
 	case SYM_COLOR:
 		if (GOB_TYPE(gob) == GOBT_COLOR) {
-			Set_Tuple_Pixel((REBYTE*)&GOB_CONTENT(gob), val);
+			//Set_Tuple_Pixel((REBYTE*)&GOB_CONTENT(gob), val);
 		}
 		else goto is_none;
 		break;
@@ -614,9 +614,11 @@ is_none:
 		case GOBT_COLOR:
 			sym = SYM_COLOR;
 			break;
+  /*
 		case GOBT_IMAGE:
 			sym = SYM_IMAGE;
 			break;
+  */
 		case GOBT_STRING:
 		case GOBT_TEXT:
 			sym = SYM_TEXT;

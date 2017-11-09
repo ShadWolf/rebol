@@ -380,9 +380,9 @@
 						if (IS_BINARY(value)) {
 							SET_INTEGER(vars, (REBI64)(BIN_HEAD(series)[index]));
 						}
-						else if (IS_IMAGE(value)) {
+						/*else if (IS_IMAGE(value)) {
 							Set_Tuple_Pixel(BIN_SKIP(series, index), vars);
-						}
+						}*/
 						else {
 							VAL_SET(vars, REB_CHAR);
 							VAL_CHAR(vars) = GET_ANY_CHAR(series, index);

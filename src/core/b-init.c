@@ -716,10 +716,12 @@ extern const REBYTE Str_Banner[];
 {
 	Register_Codec((REBYTE*)"text", Codec_Text);
 	Register_Codec((REBYTE*)"markup", Codec_Markup);
-	Init_BMP_Codec();
+/*	No image! in core ...
+ *	Init_BMP_Codec();
 	Init_GIF_Codec();
 	Init_PNG_Codec();
 	Init_JPEG_Codec();
+  */
 }
 
 
@@ -960,7 +962,7 @@ static REBCNT Set_Option_Word(REBCHR *str, REBCNT field)
 	Init_Contexts_Object();
 	Init_Main_Args(rargs);
 	Init_Ports();
-	Init_Codecs();
+	//Init_Codecs(); // no image! in core ...
 	Init_Errors(&Boot_Block->errors); // Needs system/standard/error object
 	PG_Boot_Phase = BOOT_ERRORS;
 

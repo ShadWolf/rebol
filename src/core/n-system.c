@@ -412,7 +412,7 @@ err:
 		codi.data = VAL_BIN_DATA(D_ARG(3));
 		codi.len  = VAL_LEN(D_ARG(3));
 		break;
-
+/*
 	case SYM_ENCODE:
 		codi.action = CODI_ENCODE;
 		if (IS_IMAGE(val)) {
@@ -424,7 +424,7 @@ err:
 		else
 			Trap1(RE_INVALID_ARG, val);
 		break;
-
+*/
 	default:
 		Trap1(RE_INVALID_ARG, D_ARG(2));
 	}
@@ -456,7 +456,7 @@ err:
 			// See notice in reb-codec.h on reb_codec_image 
 			Free_Mem(codi.data, codi.len);
 		break;
-
+/*
 	case CODI_IMAGE: //used on decode
 		ser = Make_Image(codi.w, codi.h, TRUE); // Puts it into RETURN stack position
 		memcpy(IMG_DATA(ser), codi.bits, codi.w * codi.h * 4);
@@ -465,7 +465,7 @@ err:
 		// See notice in reb-codec.h on reb_codec_image 
 		Free_Mem(codi.bits, codi.w * codi.h * 4);
 		break;
-
+*/
 	case CODI_BLOCK:
 		Set_Block(D_RET, codi.other);
 		break;

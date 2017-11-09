@@ -53,7 +53,7 @@ REBOL [
 	tag         self        string      +        +       *      *   [series string]  
 
 	bitset      self        bitset      *        *       *      *   -
-	image       self        image       +        +       *      *   series
+	;image       self        image       +        +       *      *   series
 	vector      self        vector      -        -       *      *   series  
 
 	block       self        block       *        f*      *      *   [series block]  

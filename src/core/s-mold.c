@@ -1131,7 +1131,7 @@ STOID Mold_Error(REBVAL *value, REB_MOLD *mold, REBFLG molded)
 		Mold_Bitset(value, mold);
 		End_Mold(mold);
 		break;
-
+/*
 	case REB_IMAGE:
 		Pre_Mold(value, mold);
 		if (!GET_MOPT(mold, MOPT_MOLD_ALL)) {
@@ -1147,7 +1147,7 @@ STOID Mold_Error(REBVAL *value, REB_MOLD *mold, REBFLG molded)
 			Post_Mold(value, mold);
 		}
 		break;
-
+*/
 	case REB_BLOCK:
 	case REB_PAREN:
 		if (!molded)

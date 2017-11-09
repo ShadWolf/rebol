@@ -47,7 +47,7 @@
 	REBCNT len = MIN(l1, l2);
 	REBINT n;
 
-	if (IS_IMAGE(v1)) len *= 4;
+	//if (IS_IMAGE(v1)) len *= 4;
 
 	n = memcmp(VAL_BIN_DATA(v1), VAL_BIN_DATA(v2), len);
 

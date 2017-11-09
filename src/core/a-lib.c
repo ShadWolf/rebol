@@ -556,7 +556,8 @@ RL_API void *RL_Make_Image(u32 width, u32 height)
 **		no references to them from REBOL code (C code does nothing.)
 */
 {
-	return Make_Image(width, height, FALSE);
+	//return Make_Image(width, height, FALSE);
+  return 0;
 }
 
 RL_API void RL_Protect_GC(REBSER *series, u32 flags)
