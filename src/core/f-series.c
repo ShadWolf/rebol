@@ -257,9 +257,9 @@ chkDecimal:
 
 	case REB_BITSET:
 	case REB_BINARY:
-	case REB_IMAGE:
+	/*case REB_IMAGE:
 		return Compare_Binary_Vals(s, t);
-
+*/
 	case REB_VECTOR:
 		return Compare_Vector(s, t);
 

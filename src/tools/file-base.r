@@ -81,7 +81,7 @@ core: [
 	t-event.c
 	t-function.c
 	t-gob.c
-	t-image.c
+;	t-image.c
 	t-integer.c
 	t-logic.c
 	t-map.c
@@ -97,14 +97,14 @@ core: [
 	t-utype.c
 	t-vector.c
 	t-word.c
-	u-bmp.c
+;	u-bmp.c
 	u-compress.c
 	u-dialect.c
-	u-gif.c
-	u-jpg.c
+;	u-gif.c
+;	u-jpg.c
 	u-md5.c
 	u-parse.c
-	u-png.c
+;	u-png.c
 	u-sha1.c
 	u-zlib.c
 ]

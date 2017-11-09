@@ -252,10 +252,10 @@ static REBSER *make_binary(REBVAL *arg, REBOOL make)
 		break;
 
 	// MAKE/TO BINARY! <image!>
-	case REB_IMAGE:
+/*	case REB_IMAGE:
 	  	ser = Make_Image_Binary(arg);
 		break;
-
+*/
 	case REB_MONEY:
 		ser = Make_Binary(12);
 		ser->tail = 12;

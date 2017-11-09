@@ -353,11 +353,11 @@ mark_obj:
 			MARK_SERIES(ser);
 			break;
 
-		case REB_IMAGE:
+		/*case REB_IMAGE:
 			//MARK_SERIES(VAL_SERIES_SIDE(val)); //????
 			MARK_SERIES(VAL_SERIES(val));
 			break;
-
+*/
 		case REB_VECTOR:
 			MARK_SERIES(VAL_SERIES(val));
 			break;
