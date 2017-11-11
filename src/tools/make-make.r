@@ -157,7 +157,7 @@ makefile-link: {
 # Directly linked rebol executable:
 rebol$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
 	$(CC) -o rebol$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
-#	$(STRIP) rebol$(BIN_SUFFIX)
+	$(STRIP) rebol$(BIN_SUFFIX)
 #	-$(NM) -a rebol$(BIN_SUFFIX)
 	$(LS) rebol$(BIN_SUFFIX)
 
