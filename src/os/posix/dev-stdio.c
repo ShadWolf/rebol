@@ -217,7 +217,14 @@ static void close_stdio(void)
    printf( GRN "%s" RESET, req->data);
    fflush(stdout);
    total = req->length;
-  } else { 
+  } 
+  else if(strstr(req->data, "**" ) != NULL){
+    printf( RED "%s" RESET, req->data);
+    fflush(stdout);
+    total = req->length;
+
+  }
+  else { 
     total = write(Std_Out, req->data, req->length);
   }
 		if (total < 0) {
