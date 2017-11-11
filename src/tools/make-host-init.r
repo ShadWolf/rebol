@@ -34,21 +34,7 @@ dir: %os/
 ; Files to include in the host program:
 files: [
 	%mezz/prot-http.r
-;	%mezz/view-colors.r
 ]
-
-vid-files: [
-	%mezz/dial-draw.r
-	%mezz/dial-text.r
-	%mezz/dial-effect.r
-	%mezz/view-funcs.r
-	%mezz/vid-face.r
-	%mezz/vid-events.r
-	%mezz/vid-styles.r
-	%mezz/mezz-splash.r
-]
-
-if include-vid [append files vid-files]
 
 ; Change back to the main souce directory:
 change-dir %../

@@ -236,15 +236,6 @@ init-schemes: func [
 	] 'file
 
 	make-scheme [
-		title: "GUI Events"
-		name: 'event
-		awake: func [event] [
-			print ["Default GUI event/awake:" event/type]
-			true
-		]
-	]
-
-	make-scheme [
 		title: "DNS Lookup"
 		name: 'dns
 		spec: system/standard/port-spec-net

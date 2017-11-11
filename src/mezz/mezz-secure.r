@@ -202,6 +202,6 @@ protect-system-object: func [
 		;system/schemes
 		;system/ports   ; should not be modified, fix this
 		system/options ; some are modified by scripts
-		system/view    ; should not be modified!
+;		system/view    ; should not be modified!
 	]
 ]

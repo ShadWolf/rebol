@@ -44,7 +44,6 @@ REBOL [
 	%mezz-math.r
 	%mezz-help.r ; move dump-obj!
 	%mezz-banner.r
-	%mezz-colors.r
 	%mezz-tail.r
 ]
 

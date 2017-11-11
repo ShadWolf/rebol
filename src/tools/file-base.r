@@ -147,10 +147,6 @@ os-posix: [
 
 boot-files: [
 	version.r
-	graphics.r
-	draw.r
-	shape.r
-	text.r
 ]
 
 mezz-files: [
