@@ -84,6 +84,7 @@ void *Term_IO;
 #define MAG   "\x1B[35m"
 #define CYN   "\x1B[36m"
 #define WHT   "\x1B[37m"
+#define BLD   "\x1B[1m"
 #define RESET "\x1B[0m"
 // END COLORS.
 /*
@@ -214,7 +215,7 @@ static void close_stdio(void)
 
 	if (Std_Out >= 0) {
   if(! strcmp(req->data, ">> ") ){ 
-   printf( GRN "%s" RESET, req->data);
+   printf( BLD GRN "%s" RESET, req->data);
    fflush(stdout);
    total = req->length;
   } 
