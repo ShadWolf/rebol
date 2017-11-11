@@ -114,43 +114,6 @@ static void Mark_Series(REBSER *series, REBCNT depth);
 
 /***********************************************************************
 **
-*/	static void Mark_Gob(REBGOB *gob, REBCNT depth)
-/*
-***********************************************************************/
-{
-	REBGOB **pane;
-	REBCNT i;
-
-	if (IS_GOB_MARK(gob)) return;
-
-	MARK_GOB(gob);
-
-	if (GOB_PANE(gob)) {
-		MARK_SERIES(GOB_PANE(gob));
-		pane = GOB_HEAD(gob);
-		for (i = 0; i < GOB_TAIL(gob); i++, pane++) {
-			Mark_Gob(*pane, depth);
-		}
-	}
-
-	if (GOB_PARENT(gob)) Mark_Gob(GOB_PARENT(gob), depth);
-
-	if (GOB_CONTENT(gob)) {
-		if (GOB_TYPE(gob) >= GOBT_IMAGE && GOB_TYPE(gob) <= GOBT_STRING) {
-			MARK_SERIES(GOB_CONTENT(gob));
-		} else if (GOB_TYPE(gob) >= GOBT_DRAW && GOB_TYPE(gob) <= GOBT_EFFECT) {
-			CHECK_MARK(GOB_CONTENT(gob), depth);
-		}
-	}
-
-	if (GOB_DATA(gob) && GOB_DTYPE(gob) && GOB_DTYPE(gob) != GOBD_INTEGER) {
-		CHECK_MARK(GOB_DATA(gob), depth);
-	}
-}
-
-
-/***********************************************************************
-**
 */	static void Mark_Event(REBVAL *value, REBCNT depth)
 /*
 ***********************************************************************/
@@ -353,11 +316,6 @@ mark_obj:
 			MARK_SERIES(ser);
 			break;
 
-		/*case REB_IMAGE:
-			//MARK_SERIES(VAL_SERIES_SIDE(val)); //????
-			MARK_SERIES(VAL_SERIES(val));
-			break;
-*/
 		case REB_VECTOR:
 			MARK_SERIES(VAL_SERIES(val));
 			break;
@@ -413,10 +371,6 @@ mark_obj:
 			CHECK_MARK(VAL_STRUCT_SPEC(val), depth);  // is a block
 			CHECK_MARK(VAL_STRUCT_VALS(val), depth);  // "    "
 			MARK_SERIES(VAL_STRUCT_DATA(val));
-			break;
-
-		case REB_GOB:
-			Mark_Gob(VAL_GOB(val), depth);
 			break;
 
 		case REB_EVENT:

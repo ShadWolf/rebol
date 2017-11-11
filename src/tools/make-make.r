@@ -94,11 +94,9 @@ R3=	$(CD)rebol$(BIN_SUFFIX) -qs
 top:
 	$(MAKE) rebol$(BIN_SUFFIX)
 
-update:
-	-cd $(UP)/; cvs -q update src
-
 make:
 	$(REBOL) $T/make-make.r $(OS_ID)
+
 
 clean:
 	@-rm -rf librebol.so objs/
@@ -134,27 +132,16 @@ $(REBOL_TOOL):
 	false
 
 ### Post build actions
-purge:
-	-rm librebol.*
-	-rm host$(BIN_SUFFIX)
-	$(MAKE) lib
-	$(MAKE) host$(BIN_SUFFIX)
 
 test:
 	$(CP) rebol$(BIN_SUFFIX) $(UP)/src/tests/
 	$(R3) $S/tests/test.r
 
 install:
-	sudo cp rebol$(BIN_SUFFIX) /usr/local/bin
-
-ship:
-	$(R3) $S/tools/upload.r
-
-build:	librebol.so
-	$(R3) $S/tools/make-build.r
+	sudo cp rebol$(BIN_SUFFIX) /usr/bin
 
 cln:
-	rm librebol.* rebol.o
+	rm rebol.o
 
 check:
 	$(STRIP) -s -o rebol.s rebol$(BIN_SUFFIX)
@@ -170,7 +157,7 @@ makefile-link: {
 # Directly linked rebol executable:
 rebol$(BIN_SUFFIX):	tmps objs $(OBJS) $(HOST)
 	$(CC) -o rebol$(BIN_SUFFIX) $(OBJS) $(HOST) $(CLIB)
-	$(STRIP) rebol$(BIN_SUFFIX)
+#	$(STRIP) rebol$(BIN_SUFFIX)
 #	-$(NM) -a rebol$(BIN_SUFFIX)
 	$(LS) rebol$(BIN_SUFFIX)
 
@@ -178,45 +165,6 @@ objs:
 	mkdir -p objs
 }
 
-makefile-so: {
-lib:	librebol.so
-
-# PUBLIC: Shared library:
-# NOTE: Did not use "-Wl,-soname,librebol.so" because won't find .so in local dir.
-librebol.so:	$(OBJS)
-	$(CC) -o librebol.so -shared $(OBJS) $(CLIB)
-	$(STRIP) librebol.so
-	-$(NM) -D librebol.so
-	-$(NM) -a librebol.so | grep "Do_"
-	$(LS) librebol.so
-
-# PUBLIC: Host using the shared lib:
-host$(BIN_SUFFIX):	$(HOST)
-	$(CC) -o host$(BIN_SUFFIX) $(HOST) librebol.so $(CLIB)
-	$(STRIP) host$(BIN_SUFFIX)
-	$(LS) host$(BIN_SUFFIX)
-	echo "export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH"
-}
-
-makefile-dyn: {
-lib:	librebol.dylib
-
-# Private static library (to be used below for OSX):
-librebol.dylib:	$(OBJS)
-	ld -r -o rebol.o $(OBJS)
-	$(CC) -dynamiclib -o librebol.dylib rebol.o $(CLIB)
-	$(STRIP) -x librebol.dylib
-	-$(NM) -D librebol.dylib
-	-$(NM) -a librebol.dylib | grep "Do_"
-	$(LS) librebol.dylib
-
-# PUBLIC: Host using the shared lib:
-host$(BIN_SUFFIX):	$(HOST)
-	$(CC) -o host$(BIN_SUFFIX) $(HOST) librebol.dylib $(CLIB)
-	$(STRIP) host$(BIN_SUFFIX)
-	$(LS) host$(BIN_SUFFIX)
-	echo "export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH"
-}
 
 not-used: {
 # PUBLIC: Static library (to distrirbute) -- does not work!
@@ -397,7 +345,6 @@ emit-obj-files fb/core
 emit ["HOST =" tab]
 emit-obj-files append copy fb/os os-specific-objs
 emit makefile-link
-emit get pick [makefile-dyn makefile-so] os-plat/2 = 2
 emit {
 ### File build targets:
 b-boot.c: $(SRC)/boot/boot.r

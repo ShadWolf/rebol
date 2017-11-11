@@ -53,14 +53,10 @@ foreach [codec handler] system/codecs [
 			entry: handler
 			title: form reduce ["Internal codec for" codec "media type"]
 			name: codec
-			type: 'image!
+			type: 'binary!
 			suffixes: select [
 				text [%.txt]
 				markup [%.html %.htm %.xml %.xsl %.wml %.sgml %.asp %.php %.cgi]
-				bmp  [%.bmp]
-				gif  [%.gif]
-				jpeg [%.jpg %.jpeg]
-				png  [%.png]
 			] codec
 		]
 		; Media-types block format: [.abc .def type ...]
@@ -85,7 +81,7 @@ immediate!: make typeset! [
 ]
 
 system/options/result-types: make typeset! [
-	immediate! series! bitset! image! object! map! gob!
+	immediate! series! bitset! object! map!
 ]
 
 ;-- Create "To-Datatype" conversion functions early in bootstrap:

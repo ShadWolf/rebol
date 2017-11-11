@@ -14,7 +14,7 @@ REBOL [
 empty?: make :tail? [
 	[
 		{Returns TRUE if empty or NONE, or for series if index is at or beyond its tail.}
-		series [series! object! gob! port! bitset! map! none!]
+		series [series! object! port! bitset! map! none!]
 	]
 ]
 
@@ -35,7 +35,7 @@ found?: func [
 
 last?: single?: func [
 	"Returns TRUE if the series length is 1."
-	series [series! port! map! tuple! bitset! object! gob! any-word!]
+	series [series! port! map! tuple! bitset! object! any-word!]
 ][
 	1 = length? series
 ]

@@ -34,7 +34,7 @@ decode: function [
 encode: function [
 	{Encodes a datatype (e.g. image!) into a series of bytes.}
 	type [word!] {Media type (jpeg, png, etc.)}
-	data [image! binary! string!] {The data to encode}
+	data [binary! string!] {The data to encode}
 	/options opts [block!] {Special encoding options}
 ][
 	unless all [

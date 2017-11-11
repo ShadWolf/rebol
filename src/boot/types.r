@@ -53,7 +53,6 @@ REBOL [
 	tag         self        string      +        +       *      *   [series string]  
 
 	bitset      self        bitset      *        *       *      *   -
-	;image       self        image       +        +       *      *   series
 	vector      self        vector      -        -       *      *   series  
 
 	block       self        block       *        f*      *      *   [series block]  
@@ -95,7 +94,6 @@ REBOL [
 	task        self        object      +        +       *      *   object  
 	port        self        port        object   object  object -	object
 
-	gob         self        gob         *        *       *      *   -  
 	event       self        event       *        *       *      *   -  
 	handle      self        0           -        -       -      -   -  
 	struct      invalid     0           -        -       -      -   -  

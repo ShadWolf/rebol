@@ -80,8 +80,6 @@ core: [
 	t-decimal.c
 	t-event.c
 	t-function.c
-	t-gob.c
-;	t-image.c
 	t-integer.c
 	t-logic.c
 	t-map.c
@@ -97,14 +95,10 @@ core: [
 	t-utype.c
 	t-vector.c
 	t-word.c
-;	u-bmp.c
 	u-compress.c
 	u-dialect.c
-;	u-gif.c
-;	u-jpg.c
 	u-md5.c
 	u-parse.c
-;	u-png.c
 	u-sha1.c
 	u-zlib.c
 ]
@@ -162,39 +156,7 @@ boot-files: [
 mezz-files: [
 ;	prot-http.r
 ;	view-colors.r
-	view-funcs.r
-]
-
-agg-files: [
-	agg_arc.cpp
-	agg_arrowhead.cpp
-	agg_bezier_arc.cpp
-	agg_bspline.cpp
-	agg_curves.cpp
-	agg_image_filters.cpp
-	agg_line_aa_basics.cpp
-	agg_path_storage.cpp
-	agg_rasterizer_scanline_aa.cpp
-	agg_rounded_rect.cpp
-	agg_sqrt_tables.cpp
-	agg_trans_affine.cpp
-	agg_trans_single_path.cpp
-	agg_vcgen_bspline.cpp
-	agg_vcgen_contour.cpp
-	agg_vcgen_dash.cpp
-	agg_vcgen_markers_term.cpp
-	agg_vcgen_smooth_poly1.cpp
-	agg_vcgen_stroke.cpp
-	agg_vpgen_segmentator.cpp
-	agg_compo.cpp
-	agg_graphics.cpp
-;	agg_font_freetype.cpp
-	agg_font_win32_tt.cpp
-	agg_truetype_text.cpp
-;	agg_effects.cpp
-	compositor.cpp
-	graphics.cpp
-	rich_text.cpp
+;	view-funcs.r
 ]
 
 tools: [

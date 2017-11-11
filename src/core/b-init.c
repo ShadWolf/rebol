@@ -399,7 +399,7 @@ extern const REBYTE Str_Banner[];
 
 	Action_Marker = SERIES_TAIL(Lib_Context)-1; // Save index for action words.
 	Do_Global_Block(VAL_SERIES(&Boot_Block->actions), -1);
-	Do_Global_Block(VAL_SERIES(&Boot_Block->natives), -1);
+	Do_Global_Block(VAL_SERIES(&Boot_Block->natives), -1); // actually crash the REBOL VM ...
 }
 
 
@@ -962,7 +962,7 @@ static REBCNT Set_Option_Word(REBCHR *str, REBCNT field)
 	Init_Contexts_Object();
 	Init_Main_Args(rargs);
 	Init_Ports();
-	//Init_Codecs(); // no image! in core ...
+	Init_Codecs(); // no image! in core ...
 	Init_Errors(&Boot_Block->errors); // Needs system/standard/error object
 	PG_Boot_Phase = BOOT_ERRORS;
 

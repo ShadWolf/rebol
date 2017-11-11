@@ -1131,23 +1131,6 @@ STOID Mold_Error(REBVAL *value, REB_MOLD *mold, REBFLG molded)
 		Mold_Bitset(value, mold);
 		End_Mold(mold);
 		break;
-/*
-	case REB_IMAGE:
-		Pre_Mold(value, mold);
-		if (!GET_MOPT(mold, MOPT_MOLD_ALL)) {
-			Append_Byte(ser, '[');
-			Mold_Image_Data(value, mold);
-			Append_Byte(ser, ']');
-			End_Mold(mold);
-		}
-		else {
-			REBVAL val = *value;
-			VAL_INDEX(&val) = 0; // mold all of it
-			Mold_Image_Data(&val, mold);
-			Post_Mold(value, mold);
-		}
-		break;
-*/
 	case REB_BLOCK:
 	case REB_PAREN:
 		if (!molded)
@@ -1230,17 +1213,6 @@ STOID Mold_Error(REBVAL *value, REB_MOLD *mold, REBFLG molded)
 		Mold_Map(value, mold, molded);
 		break;
 
-	case REB_GOB:
-	{
-		REBSER *blk;
-		Pre_Mold(value, mold);
-		blk = Gob_To_Block(VAL_GOB(value));
-		Mold_Block_Series(mold, blk, 0, 0);
-		End_Mold(mold);
-	}
-		break;
-
-	
 	case REB_EVENT:
 		Mold_Event(value, mold);
 		break;

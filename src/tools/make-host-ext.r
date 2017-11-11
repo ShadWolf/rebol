@@ -155,7 +155,7 @@ emit-file: func [
 ]
 
 ;-- Create Files -------------------------------------------------------------
-
+comment { 
 emit-file %host-ext-graphics [
 	%../boot/graphics.r
 	%../mezz/view-funcs.r
@@ -172,5 +172,5 @@ emit-file %host-ext-shape [
 emit-file %host-ext-text [
 	%../boot/text.r
 ]
-
+}
 print "   "

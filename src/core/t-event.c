@@ -108,22 +108,6 @@
 		} else return FALSE;
 		break;
 
-	case SYM_WINDOW:
-	case SYM_GOB:
-		if (IS_GOB(val)) {
-			VAL_EVENT_MODEL(value) = EVM_GUI;
-			VAL_EVENT_SER(value) = VAL_GOB(val);
-			break;
-		}
-		return FALSE; 
-
-	case SYM_OFFSET:
-		if (IS_PAIR(val)) {
-			SET_EVENT_XY(value, Float_Int16(VAL_PAIR_X(val)), Float_Int16(VAL_PAIR_Y(val)));
-		}
-		else return FALSE;
-		break;
-
 	case SYM_KEY:
 		//VAL_EVENT_TYPE(value) != EVT_KEY && VAL_EVENT_TYPE(value) != EVT_KEY_UP)
 		VAL_EVENT_MODEL(value) = EVM_GUI;
@@ -227,24 +211,6 @@
 			if (!req || !req->port) goto is_none;
 			SET_PORT(val, (REBSER*)(req->port));
 		}
-		break;
-
-	case SYM_WINDOW:
-	case SYM_GOB:
-		if (IS_EVENT_MODEL(value, EVM_GUI)) {
-			if (VAL_EVENT_SER(value)) {
-				SET_GOB(val, VAL_EVENT_SER(value));
-				break;
-			}
-		}
-		return FALSE;
-
-	case SYM_OFFSET:
-		if (VAL_EVENT_TYPE(value) == EVT_KEY || VAL_EVENT_TYPE(value) == EVT_KEY_UP)
-			goto is_none;
-		VAL_SET(val, REB_PAIR);
-		VAL_PAIR_X(val) = (REBD32)VAL_EVENT_X(value);
-		VAL_PAIR_Y(val) = (REBD32)VAL_EVENT_Y(value);
 		break;
 
 	case SYM_KEY:
@@ -374,9 +340,7 @@ is_none:
 is_arg_error:
 			Trap_Types(RE_EXPECT_VAL, REB_EVENT, VAL_TYPE(arg));
 
-		// Initialize GOB from block:
-		if (IS_BLOCK(arg)) Set_Event_Vars(D_RET, VAL_BLK_DATA(arg));
-		else goto is_arg_error;
+		 goto is_arg_error;
 	}
 	else Trap_Action(REB_EVENT, action);
 
@@ -507,7 +471,7 @@ enum rebol_event_fields {
 	REBVAL val;
 	REBCNT field;
 	REBCNT fields[] = {
-		SYM_TYPE, SYM_PORT, SYM_GOB, SYM_OFFSET, SYM_KEY,
+		SYM_TYPE, SYM_PORT, SYM_OFFSET, SYM_KEY,
 		SYM_FLAGS, SYM_CODE, SYM_DATA, 0
 	};
 

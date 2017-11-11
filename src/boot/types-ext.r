@@ -53,10 +53,6 @@ lit-path	*	ser
 binary		40	ser
 bitset		*	ser
 vector		*	ser
-;image		*	image
-
-gob			47	ser
 
 object		48	ptr
 module		*	ptr
-
