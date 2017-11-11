@@ -219,7 +219,9 @@ static void close_stdio(void)
    total = req->length;
   } 
   else if(strstr(req->data, "**" ) != NULL){
-    printf( RED "%s" RESET, req->data);
+    char *dest=malloc(sizeof(char) * req->length);
+    strncpy(dest, req->data, req->length); 
+    printf( RED "%s" RESET, dest);
     fflush(stdout);
     total = req->length;
 
