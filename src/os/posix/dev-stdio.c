@@ -73,7 +73,19 @@ int  Read_Line(void*, char*, int);
 void Put_Str(char *buf);
 
 void *Term_IO;
+//-- Colors code for terminales UX because we can do it !
+//
+//
 
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+// END COLORS.
 /*
 #define	PUTS(s)		fputs(s, stdout)
 #define GETS(s,len)	fgets(s, len, stdin);
@@ -201,9 +213,13 @@ static void close_stdio(void)
 	}
 
 	if (Std_Out >= 0) {
-
-		total = write(Std_Out, req->data, req->length);
-
+  if(! strcmp(req->data, ">> ") ){ 
+   printf( GRN "%s" RESET, req->data);
+   fflush(stdout);
+   total = req->length;
+  } else { 
+    total = write(Std_Out, req->data, req->length);
+  }
 		if (total < 0) {
 			req->error = errno;
 			return DR_ERROR;
