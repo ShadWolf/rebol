@@ -829,7 +829,7 @@ make-obj-defs ob/ports "PORTS_" 4
 make-obj-defs ob/options "OPTIONS_" 4
 ;make-obj-defs ob/intrinsic "INTRINSIC_" 4
 make-obj-defs ob/locale "LOCALE_" 4
-make-obj-defs ob/view "VIEW_" 4
+;make-obj-defs ob/view "VIEW_" 4
 
 write inc/tmp-sysobj.h out
 
@@ -854,32 +854,6 @@ emit {#define DIALECT_LIT_CMD 0x1000
 
 write inc/reb-dialect.h out
 
-
-;----------------------------------------------------------------------------
-;
-; Event Types
-;
-;----------------------------------------------------------------------------
-
-emit-head "Event Types" %reb-evtypes.h
-emit newline
-
-emit ["enum event_types {" newline]
-foreach field ob/view/event-types [
-	emit-line "EVT_" field none
-]
-emit [tab "EVT_MAX^/"]
-emit "};^/^/"
-
-emit ["enum event_keys {" newline]
-emit-line "EVK_" "NONE" none
-foreach field ob/view/event-keys [
-	emit-line "EVK_" field none
-]
-emit [tab "EVK_MAX^/"]
-emit "};^/^/"
-
-write inc/reb-evtypes.h out
 
 
 ;----------------------------------------------------------------------------

@@ -81,7 +81,7 @@
 
 	case SYM_TYPE:
 		if (!IS_WORD(val) && !IS_LIT_WORD(val)) return FALSE;
-		arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
+		/*arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
 		if (IS_BLOCK(arg)) {
 			w = VAL_WORD_CANON(val);
 			for (n = 0, arg = VAL_BLK(arg); NOT_END(arg); arg++, n++) {
@@ -91,7 +91,7 @@
 				}
 			}
 			Trap_Arg(val);
-		}
+		}*/
 		return FALSE;
 
 	case SYM_PORT:
@@ -106,30 +106,6 @@
 		else if (IS_NONE(val)) {
 			VAL_EVENT_MODEL(value) = EVM_GUI;
 		} else return FALSE;
-		break;
-
-	case SYM_KEY:
-		//VAL_EVENT_TYPE(value) != EVT_KEY && VAL_EVENT_TYPE(value) != EVT_KEY_UP)
-		VAL_EVENT_MODEL(value) = EVM_GUI;
-		if (IS_CHAR(val)) {
-			VAL_EVENT_DATA(value) = VAL_CHAR(val);
-		}
-		else if (IS_LIT_WORD(val) || IS_WORD(val)) {
-			arg = Get_System(SYS_VIEW, VIEW_EVENT_KEYS);
-			if (IS_BLOCK(arg)) {
-				arg = VAL_BLK_DATA(arg);
-				for (n = VAL_INDEX(arg); NOT_END(arg); n++, arg++) {
-					if (IS_WORD(arg) && VAL_WORD_CANON(arg) == VAL_WORD_CANON(val)) {
-						VAL_EVENT_DATA(value) = (n+1) << 16;
-						break;
-					}
-				}
-				if (IS_END(arg)) return FALSE;
-				break;
-			}
-			return FALSE;
-		}
-		else return FALSE;
 		break;
 
 	case SYM_CODE:
@@ -181,20 +157,20 @@
 
 	case SYM_TYPE:
 		if (VAL_EVENT_TYPE(value) == 0) goto is_none;
-		arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
+		/*arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
 		if (IS_BLOCK(arg) && VAL_TAIL(arg) >= EVT_MAX) {
 			*val = *VAL_BLK_SKIP(arg, VAL_EVENT_TYPE(value));
 			break;
-		}
+		}*/
 		return FALSE;
 
 	case SYM_PORT:
 		// Most events are for the GUI:
-		if (IS_EVENT_MODEL(value, EVM_GUI)) {
+	/*	if (IS_EVENT_MODEL(value, EVM_GUI)) {
 			*val = *Get_System(SYS_VIEW, VIEW_EVENT_PORT);
 		}
 		// Event holds a port:
-		else if (IS_EVENT_MODEL(value, EVM_PORT)) {
+		else */ if (IS_EVENT_MODEL(value, EVM_PORT)) {
 			SET_PORT(val, VAL_EVENT_SER(value));
 		}
 		// Event holds an object:
@@ -211,22 +187,6 @@
 			if (!req || !req->port) goto is_none;
 			SET_PORT(val, (REBSER*)(req->port));
 		}
-		break;
-
-	case SYM_KEY:
-		if (VAL_EVENT_TYPE(value) != EVT_KEY && VAL_EVENT_TYPE(value) != EVT_KEY_UP)
-			goto is_none;
-		n = VAL_EVENT_DATA(value); // key-words in top 16, chars in lower 16
-		if (n & 0xffff0000) {
-			arg = Get_System(SYS_VIEW, VIEW_EVENT_KEYS);
-			n = (n >> 16) - 1;
-			if (IS_BLOCK(arg) && n < (REBINT)VAL_TAIL(arg)) {
-				*val = *VAL_BLK_SKIP(arg, n);
-				break;
-			}
-			return FALSE;
-		}
-		SET_CHAR(val, n);
 		break;
 
 	case SYM_FLAGS:
@@ -340,7 +300,9 @@ is_none:
 is_arg_error:
 			Trap_Types(RE_EXPECT_VAL, REB_EVENT, VAL_TYPE(arg));
 
-		 goto is_arg_error;
+		// Initialize GOB from block:
+		if (IS_BLOCK(arg)) Set_Event_Vars(D_RET, VAL_BLK_DATA(arg));
+		else goto is_arg_error;
 	}
 	else Trap_Action(REB_EVENT, action);
 
@@ -381,22 +343,22 @@ pick_it:
 		switch(index) {
 		case EF_TYPE:
 			if (VAL_EVENT_TYPE(value) == 0) goto is_none;
-			arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
+			/*arg = Get_System(SYS_VIEW, VIEW_EVENT_TYPES);
 			if (IS_BLOCK(arg) && VAL_TAIL(arg) >= EVT_MAX) {
 				*D_RET = *VAL_BLK_SKIP(arg, VAL_EVENT_TYPE(value));
 				return R_RET;
-			}
+			}*/
 			return R_NONE;
 
 		case EF_PORT:
 			// Most events are for the GUI:
-			if (GET_FLAG(VAL_EVENT_FLAGS(value), EVF_NO_REQ))
+		/*	if (GET_FLAG(VAL_EVENT_FLAGS(value), EVF_NO_REQ))
 				*D_RET = *Get_System(SYS_VIEW, VIEW_EVENT_PORT);
-			else {
+			else {*/
 				req = VAL_EVENT_REQ(value);
 				if (!req || !req->port) goto is_none;
 				SET_PORT(D_RET, (REBSER*)(req->port));
-			}
+			}*/
 			return R_RET;
 
 		case EF_KEY:
@@ -471,7 +433,7 @@ enum rebol_event_fields {
 	REBVAL val;
 	REBCNT field;
 	REBCNT fields[] = {
-		SYM_TYPE, SYM_PORT, SYM_OFFSET, SYM_KEY,
+		SYM_TYPE, SYM_PORT, 
 		SYM_FLAGS, SYM_CODE, SYM_DATA, 0
 	};
 

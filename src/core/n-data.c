@@ -947,3 +947,22 @@ static int Do_Ordinal(REBVAL *ds, REBINT n)
 }
 #endif
 
+/***********************************************************************
+**
+*/	REBNATIVE(map_event)
+/*
+***********************************************************************/
+{
+	REBVAL *val = D_ARG(1);
+	//REBGOB *gob = VAL_EVENT_SER(val);
+	REBXYF xy;
+
+	if (GET_FLAG(VAL_EVENT_FLAGS(val), EVF_HAS_XY)) {
+		xy.x = (REBD32)VAL_EVENT_X(val);
+		xy.y = (REBD32)VAL_EVENT_Y(val);
+//		VAL_EVENT_SER(val) = Map_Gob_Inner(gob, &xy);
+		SET_EVENT_XY(val, ROUND_TO_INT(xy.x), ROUND_TO_INT(xy.y));
+	}
+	return R_ARG1;
+}
+

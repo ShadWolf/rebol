@@ -972,6 +972,11 @@ selfless?: native [
     context [any-word! any-object!] "A reference to the target context"
 ]
 
+map-event: native [
+      "Returns event with inner-most graphical object and coordinate."
+      event [event!]
+]
+
 as-pair: native [
 	"Combine X and Y values into a pair."
 	x [number!]
